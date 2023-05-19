@@ -14,14 +14,15 @@ RUN mkdir /app && \
 RUN mkdir /run/postgresql && \
     chown postgres:postgres /run/postgresql
 
-RUN mkdir -p /var/lib/postgresql/data
-RUN echo "host all all all trust"  >> "/var/lib/postgresql/data/pg_hba.conf" 
-#       ou "host all all 0.0.0.0/0 md5"
+RUN mkdir -p /app
+RUN echo "host all all all trust";
+# ou RUN echo "host all all all trust"  >> "/var/lib/postgresql/data/pg_hba.conf" 
+# ou RUN "host all all 0.0.0.0/0 md5" >> "/var/lib/postgresql/data/pg_hba.conf"
 # donner les droits de connection venant de tout le monde sur ce fichier
 
 EXPOSE 5432
 
-CMD su postgres -c 'postgres -D /var/lib/postgresql/data'
+CMD su postgres -c 'postgres -D /app'
 
 # creation d'un user dans postgres
 # RUN psql -U postgres

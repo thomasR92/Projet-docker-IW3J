@@ -9,6 +9,9 @@ RUN mkdir /app && \
     su postgres -c 'initdb -D /app' && \
     chmod -R 750 /app
 
+#installation de vim
+RUN apk update && apk add vim
+
 #   chown -R (recusrive) chown a tout les dossier (et dossier/file enfant)
 
 RUN mkdir /run/postgresql && \
